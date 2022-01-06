@@ -40,8 +40,8 @@ public class OverlayView extends View {
     public static final boolean DEFAULT_SHOW_CROP_GRID = true;
     public static final boolean DEFAULT_CIRCLE_DIMMED_LAYER = false;
     public static final int DEFAULT_FREESTYLE_CROP_MODE = FREESTYLE_CROP_MODE_DISABLE;
-    public static final int DEFAULT_CROP_GRID_ROW_COUNT = 2;
-    public static final int DEFAULT_CROP_GRID_COLUMN_COUNT = 2;
+    public static final int DEFAULT_CROP_GRID_ROW_COUNT = 3;
+    public static final int DEFAULT_CROP_GRID_COLUMN_COUNT = 3;
 
     private final RectF mCropViewRect = new RectF();
     private final RectF mTempRect = new RectF();
