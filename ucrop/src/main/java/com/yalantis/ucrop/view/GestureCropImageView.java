@@ -36,30 +36,6 @@ public class GestureCropImageView extends CropImageView {
         super(context, attrs, defStyle);
     }
 
-    public void setScaleEnabled(boolean scaleEnabled) {
-        mIsScaleEnabled = scaleEnabled;
-    }
-
-    public boolean isScaleEnabled() {
-        return mIsScaleEnabled;
-    }
-
-    public void setRotateEnabled(boolean rotateEnabled) {
-        mIsRotateEnabled = rotateEnabled;
-    }
-
-    public boolean isRotateEnabled() {
-        return mIsRotateEnabled;
-    }
-
-    public void setDoubleTapScaleSteps(int doubleTapScaleSteps) {
-        mDoubleTapScaleSteps = doubleTapScaleSteps;
-    }
-
-    public int getDoubleTapScaleSteps() {
-        return mDoubleTapScaleSteps;
-    }
-
     /**
      * If it's ACTION_DOWN event - user touches the screen and all current animation must be canceled.
      * If it's ACTION_UP event - user removed all fingers from the screen and current image position must be corrected.

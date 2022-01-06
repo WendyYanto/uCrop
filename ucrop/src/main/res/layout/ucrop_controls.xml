@@ -20,11 +20,6 @@
         <include
             android:id="@+id/layout_rotate_wheel"
             layout="@layout/ucrop_layout_rotate_wheel" />
-
-        <include
-            android:id="@+id/layout_scale_wheel"
-            layout="@layout/ucrop_layout_scale_wheel" />
-
     </FrameLayout>
 
     <ImageView
@@ -33,47 +28,4 @@
         android:layout_height="8dp"
         android:layout_alignBottom="@+id/wrapper_controls"
         android:src="@drawable/ucrop_shadow_upside" />
-
-    <LinearLayout
-        android:id="@+id/wrapper_states"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/ucrop_height_wrapper_states"
-        android:layout_below="@+id/controls_shadow"
-        android:background="@color/ucrop_color_widget_background"
-        android:baselineAligned="false"
-        android:gravity="center"
-        android:orientation="horizontal">
-
-        <LinearLayout
-            android:id="@+id/state_rotate"
-            style="@style/ucrop_WrapperIconState">
-
-            <ImageView
-                android:id="@+id/image_view_state_rotate"
-                style="@style/ucrop_ImageViewWidgetIcon"
-                app:srcCompat="@drawable/ucrop_rotate" />
-
-            <TextView
-                android:id="@+id/text_view_rotate"
-                style="@style/ucrop_TextViewWidget"
-                android:text="@string/ucrop_rotate" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/state_scale"
-            style="@style/ucrop_WrapperIconState">
-
-            <ImageView
-                android:id="@+id/image_view_state_scale"
-                style="@style/ucrop_ImageViewWidgetIcon"
-                app:srcCompat="@drawable/ucrop_scale" />
-
-            <TextView
-                android:id="@+id/text_view_scale"
-                style="@style/ucrop_TextViewWidget"
-                android:text="@string/ucrop_scale" />
-
-        </LinearLayout>
-    </LinearLayout>
 </RelativeLayout>

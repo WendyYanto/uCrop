@@ -214,13 +214,6 @@ public class CropImageView extends TransformImageView {
     }
 
     /**
-     * This method scales image up for given value related to image center.
-     */
-    public void zoomInImage(float deltaScale) {
-        zoomInImage(deltaScale, mCropRect.centerX(), mCropRect.centerY());
-    }
-
-    /**
      * This method scales image up for given value related to given coords (x, y).
      */
     public void zoomInImage(float scale, float centerX, float centerY) {

@@ -24,7 +24,6 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.yalantis.ucrop.callback.BitmapCropCallback;
-import com.yalantis.ucrop.util.SelectedStateListDrawable;
 import com.yalantis.ucrop.view.CropImageView;
 import com.yalantis.ucrop.view.GestureCropImageView;
 import com.yalantis.ucrop.view.OverlayView;
@@ -32,14 +31,10 @@ import com.yalantis.ucrop.view.TransformImageView;
 import com.yalantis.ucrop.view.UCropView;
 import com.yalantis.ucrop.view.widget.HorizontalProgressWheelView;
 
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
 import java.util.Locale;
 
 import androidx.annotation.ColorInt;
 import androidx.annotation.DrawableRes;
-import androidx.annotation.IdRes;
-import androidx.annotation.IntDef;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -48,7 +43,6 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
 import androidx.transition.AutoTransition;
 import androidx.transition.Transition;
-import androidx.transition.TransitionManager;
 
 /**
  * Created by Oleksii Shliama (https://github.com/shliama).
@@ -60,20 +54,8 @@ public class UCropActivity extends AppCompatActivity {
     public static final int DEFAULT_COMPRESS_QUALITY = 90;
     public static final Bitmap.CompressFormat DEFAULT_COMPRESS_FORMAT = Bitmap.CompressFormat.JPEG;
 
-    public static final int NONE = 0;
-    public static final int SCALE = 1;
-    public static final int ROTATE = 2;
-    public static final int ALL = 3;
-
-    @IntDef({NONE, SCALE, ROTATE, ALL})
-    @Retention(RetentionPolicy.SOURCE)
-    public @interface GestureTypes {
-
-    }
-
     private static final String TAG = "UCropActivity";
     private static final long CONTROLS_ANIMATION_DURATION = 50;
-    private static final int SCALE_WIDGET_SENSITIVITY_COEFFICIENT = 15000;
     private static final int ROTATE_WIDGET_SENSITIVITY_COEFFICIENT = 42;
 
     private String mToolbarTitle;
@@ -97,9 +79,8 @@ public class UCropActivity extends AppCompatActivity {
     private UCropView mUCropView;
     private GestureCropImageView mGestureCropImageView;
     private OverlayView mOverlayView;
-    private ViewGroup mWrapperStateRotate, mWrapperStateScale;
-    private ViewGroup mLayoutRotate, mLayoutScale;
-    private TextView mTextViewRotateAngle, mTextViewScalePercent;
+    private ViewGroup mLayoutRotate;
+    private TextView mTextViewRotateAngle;
     private View mBlockingView;
 
     private Transition mControlsTransition;
@@ -120,7 +101,7 @@ public class UCropActivity extends AppCompatActivity {
 
         setupViews(intent);
         setImageData(intent);
-        setInitialState();
+        mLayoutRotate.setVisibility(View.VISIBLE);
         addBlockingView();
     }
 
@@ -279,17 +260,9 @@ public class UCropActivity extends AppCompatActivity {
             mControlsTransition = new AutoTransition();
             mControlsTransition.setDuration(CONTROLS_ANIMATION_DURATION);
 
-            mWrapperStateRotate = findViewById(R.id.state_rotate);
-            mWrapperStateRotate.setOnClickListener(mStateClickListener);
-            mWrapperStateScale = findViewById(R.id.state_scale);
-            mWrapperStateScale.setOnClickListener(mStateClickListener);
-
             mLayoutRotate = findViewById(R.id.layout_rotate_wheel);
-            mLayoutScale = findViewById(R.id.layout_scale_wheel);
 
             setupRotateWidget();
-            setupScaleWidget();
-            setupStatesWrapper();
         }
     }
 
@@ -341,7 +314,7 @@ public class UCropActivity extends AppCompatActivity {
 
         @Override
         public void onScale(float currentScale) {
-            setScaleText(currentScale);
+            // No Implementation Needed
         }
 
         @Override
@@ -359,17 +332,6 @@ public class UCropActivity extends AppCompatActivity {
         }
 
     };
-
-    /**
-     * Use {@link #mActiveControlsWidgetColor} for color filter
-     */
-    private void setupStatesWrapper() {
-        ImageView stateScaleImageView = findViewById(R.id.image_view_state_scale);
-        ImageView stateRotateImageView = findViewById(R.id.image_view_state_rotate);
-
-        stateScaleImageView.setImageDrawable(new SelectedStateListDrawable(stateScaleImageView.getDrawable(), mActiveControlsWidgetColor));
-        stateRotateImageView.setImageDrawable(new SelectedStateListDrawable(stateRotateImageView.getDrawable(), mActiveControlsWidgetColor));
-    }
 
 
     /**
@@ -426,36 +388,6 @@ public class UCropActivity extends AppCompatActivity {
         setAngleTextColor(mActiveControlsWidgetColor);
     }
 
-    private void setupScaleWidget() {
-        mTextViewScalePercent = findViewById(R.id.text_view_scale);
-        ((HorizontalProgressWheelView) findViewById(R.id.scale_scroll_wheel))
-                .setScrollingListener(new HorizontalProgressWheelView.ScrollingListener() {
-                    @Override
-                    public void onScroll(float delta, float totalDistance) {
-                        if (delta > 0) {
-                            mGestureCropImageView.zoomInImage(mGestureCropImageView.getCurrentScale()
-                                    + delta * ((mGestureCropImageView.getMaxScale() - mGestureCropImageView.getMinScale()) / SCALE_WIDGET_SENSITIVITY_COEFFICIENT));
-                        } else {
-                            mGestureCropImageView.zoomOutImage(mGestureCropImageView.getCurrentScale()
-                                    + delta * ((mGestureCropImageView.getMaxScale() - mGestureCropImageView.getMinScale()) / SCALE_WIDGET_SENSITIVITY_COEFFICIENT));
-                        }
-                    }
-
-                    @Override
-                    public void onScrollEnd() {
-                        mGestureCropImageView.setImageToWrapCropBounds();
-                    }
-
-                    @Override
-                    public void onScrollStart() {
-                        mGestureCropImageView.cancelAllAnimations();
-                    }
-                });
-        ((HorizontalProgressWheelView) findViewById(R.id.scale_scroll_wheel)).setMiddleLineColor(mActiveControlsWidgetColor);
-
-        setScaleTextColor(mActiveControlsWidgetColor);
-    }
-
     private void setAngleText(float angle) {
         if (mTextViewRotateAngle != null) {
             mTextViewRotateAngle.setText(String.format(Locale.getDefault(), "%.1f°", angle));
@@ -468,18 +400,6 @@ public class UCropActivity extends AppCompatActivity {
         }
     }
 
-    private void setScaleText(float scale) {
-        if (mTextViewScalePercent != null) {
-            mTextViewScalePercent.setText(String.format(Locale.getDefault(), "%d%%", (int) (scale * 100)));
-        }
-    }
-
-    private void setScaleTextColor(int textColor) {
-        if (mTextViewScalePercent != null) {
-            mTextViewScalePercent.setTextColor(textColor);
-        }
-    }
-
     private void resetRotation() {
         mGestureCropImageView.postRotate(-mGestureCropImageView.getCurrentAngle());
         mGestureCropImageView.setImageToWrapCropBounds();
@@ -488,36 +408,6 @@ public class UCropActivity extends AppCompatActivity {
     private void rotateByAngle(int angle) {
         mGestureCropImageView.postRotate(angle);
         mGestureCropImageView.setImageToWrapCropBounds();
-    }
-
-    private final View.OnClickListener mStateClickListener = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            if (!v.isSelected()) {
-                setWidgetState(v.getId());
-            }
-        }
-    };
-
-    private void setInitialState() {
-        setWidgetState(R.id.state_rotate);
-    }
-
-    private void setWidgetState(@IdRes int stateViewId) {
-        mWrapperStateRotate.setSelected(stateViewId == R.id.state_rotate);
-        mWrapperStateScale.setSelected(stateViewId == R.id.state_scale);
-
-        mLayoutRotate.setVisibility(stateViewId == R.id.state_rotate ? View.VISIBLE : View.GONE);
-        mLayoutScale.setVisibility(stateViewId == R.id.state_scale ? View.VISIBLE : View.GONE);
-
-        changeSelectedTab(stateViewId);
-    }
-
-    private void changeSelectedTab(int stateViewId) {
-        TransitionManager.beginDelayedTransition((ViewGroup) findViewById(R.id.ucrop_photobox), mControlsTransition);
-
-        mWrapperStateScale.findViewById(R.id.text_view_scale).setVisibility(stateViewId == R.id.state_scale ? View.VISIBLE : View.GONE);
-        mWrapperStateRotate.findViewById(R.id.text_view_rotate).setVisibility(stateViewId == R.id.state_rotate ? View.VISIBLE : View.GONE);
     }
 
     /**

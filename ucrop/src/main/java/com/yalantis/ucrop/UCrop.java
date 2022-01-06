@@ -284,15 +284,6 @@ public class UCrop {
         }
 
         /**
-         * Choose what set of gestures will be enabled on each tab - if any.
-         */
-        public void setAllowedGestures(@UCropActivity.GestureTypes int tabScale,
-                                       @UCropActivity.GestureTypes int tabRotate,
-                                       @UCropActivity.GestureTypes int tabAspectRatio) {
-            mOptionBundle.putIntArray(EXTRA_ALLOWED_GESTURES, new int[]{tabScale, tabRotate, tabAspectRatio});
-        }
-
-        /**
          * This method sets multiplier that is used to calculate max image scale from min image scale.
          *
          * @param maxScaleMultiplier - (minScale * maxScaleMultiplier) = maxScale
