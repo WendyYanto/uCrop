@@ -21,6 +21,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
+// ToDo: remove this dependencies
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
