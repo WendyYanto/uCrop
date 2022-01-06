@@ -27,8 +27,6 @@ import android.widget.Toast;
 
 import com.yalantis.ucrop.UCrop;
 import com.yalantis.ucrop.UCropActivity;
-import com.yalantis.ucrop.UCropFragment;
-import com.yalantis.ucrop.UCropFragmentCallback;
 
 import java.io.File;
 import java.util.Locale;
@@ -44,12 +42,10 @@ import androidx.core.content.ContextCompat;
 /**
  * Created by Oleksii Shliama (https://github.com/shliama).
  */
-public class SampleActivity extends BaseActivity implements UCropFragmentCallback {
+public class SampleActivity extends BaseActivity {
 
     private static final String TAG = "SampleActivity";
 
-    private static final int REQUEST_SELECT_PICTURE = 0x01;
-    private static final int REQUEST_SELECT_PICTURE_FOR_FRAGMENT = 0x02;
     private static final String SAMPLE_CROPPED_IMAGE_NAME = "SampleCropImage";
 
     private RadioGroup mRadioGroupAspectRatio, mRadioGroupCompressionSettings;
@@ -64,7 +60,6 @@ public class SampleActivity extends BaseActivity implements UCropFragmentCallbac
     private ScrollView settingsView;
     private int requestMode = BuildConfig.RequestMode;
 
-    private UCropFragment fragment;
     private boolean mShowLoader;
 
     private String mToolbarTitle;
@@ -101,6 +96,7 @@ public class SampleActivity extends BaseActivity implements UCropFragmentCallbac
         if (resultCode == UCrop.RESULT_ERROR) {
             handleCropError(data);
         }
+        super.onActivityResult(requestCode, resultCode, data);
     }
 
     private TextWatcher mAspectRatioTextWatcher = new TextWatcher() {
@@ -235,12 +231,7 @@ public class SampleActivity extends BaseActivity implements UCropFragmentCallbac
         uCrop = basisConfig(uCrop);
         uCrop = advancedConfig(uCrop);
 
-        if (requestMode == REQUEST_SELECT_PICTURE_FOR_FRAGMENT) {       //if build variant = fragment
-            setupFragment(uCrop);
-        } else {                                                        // else start uCrop Activity
-            uCrop.start(SampleActivity.this);
-        }
-
+        uCrop.start(SampleActivity.this);
     }
 
     /**
@@ -381,42 +372,6 @@ public class SampleActivity extends BaseActivity implements UCropFragmentCallbac
         }
     }
 
-    @Override
-    public void loadingProgress(boolean showLoader) {
-        mShowLoader = showLoader;
-        supportInvalidateOptionsMenu();
-    }
-
-    @Override
-    public void onCropFinish(UCropFragment.UCropResult result) {
-        switch (result.mResultCode) {
-            case RESULT_OK:
-                handleCropResult(result.mResultData);
-                break;
-            case UCrop.RESULT_ERROR:
-                handleCropError(result.mResultData);
-                break;
-        }
-        removeFragmentFromScreen();
-    }
-
-    public void removeFragmentFromScreen() {
-        getSupportFragmentManager().beginTransaction()
-                .remove(fragment)
-                .commit();
-        toolbar.setVisibility(View.GONE);
-        settingsView.setVisibility(View.VISIBLE);
-    }
-
-    public void setupFragment(UCrop uCrop) {
-        fragment = uCrop.getFragment(uCrop.getIntent(this).getExtras());
-        getSupportFragmentManager().beginTransaction()
-                .add(R.id.fragment_container, fragment, UCropFragment.TAG)
-                .commitAllowingStateLoss();
-
-        setupViews(uCrop.getIntent(this).getExtras());
-    }
-
     public void setupViews(Bundle args) {
         settingsView.setVisibility(View.GONE);
         mStatusBarColor = args.getInt(UCrop.Options.EXTRA_STATUS_BAR_COLOR, ContextCompat.getColor(this, R.color.ucrop_color_statusbar));
@@ -512,16 +467,5 @@ public class SampleActivity extends BaseActivity implements UCropFragmentCallbac
         menu.findItem(R.id.menu_crop).setVisible(!mShowLoader);
         menu.findItem(R.id.menu_loader).setVisible(mShowLoader);
         return super.onPrepareOptionsMenu(menu);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == R.id.menu_crop) {
-            if (fragment != null && fragment.isAdded())
-                fragment.cropAndSaveImage();
-        } else if (item.getItemId() == android.R.id.home) {
-            removeFragmentFromScreen();
-        }
-        return super.onOptionsItemSelected(item);
     }
 }

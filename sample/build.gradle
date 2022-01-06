@@ -28,9 +28,6 @@ android {
         activity {
             buildConfigField("int","RequestMode", "1")
         }
-        fragment {
-            buildConfigField("int","RequestMode", "2")
-        }
     }
 }
 
