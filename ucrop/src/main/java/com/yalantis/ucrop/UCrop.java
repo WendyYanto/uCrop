@@ -46,9 +46,6 @@ public class UCrop {
     public static final String EXTRA_OUTPUT_OFFSET_Y = EXTRA_PREFIX + ".OffsetY";
     public static final String EXTRA_ERROR = EXTRA_PREFIX + ".Error";
 
-    public static final String EXTRA_ASPECT_RATIO_X = EXTRA_PREFIX + ".AspectRatioX";
-    public static final String EXTRA_ASPECT_RATIO_Y = EXTRA_PREFIX + ".AspectRatioY";
-
     public static final String EXTRA_MAX_SIZE_X = EXTRA_PREFIX + ".MaxSizeX";
     public static final String EXTRA_MAX_SIZE_Y = EXTRA_PREFIX + ".MaxSizeY";
 
@@ -70,29 +67,6 @@ public class UCrop {
         mCropOptionsBundle = new Bundle();
         mCropOptionsBundle.putParcelable(EXTRA_INPUT_URI, source);
         mCropOptionsBundle.putParcelable(EXTRA_OUTPUT_URI, destination);
-    }
-
-    /**
-     * Set an aspect ratio for crop bounds.
-     * User won't see the menu with other ratios options.
-     *
-     * @param x aspect ratio X
-     * @param y aspect ratio Y
-     */
-    public UCrop withAspectRatio(float x, float y) {
-        mCropOptionsBundle.putFloat(EXTRA_ASPECT_RATIO_X, x);
-        mCropOptionsBundle.putFloat(EXTRA_ASPECT_RATIO_Y, y);
-        return this;
-    }
-
-    /**
-     * Set an aspect ratio for crop bounds that is evaluated from source image width and height.
-     * User won't see the menu with other ratios options.
-     */
-    public UCrop useSourceImageAspectRatio() {
-        mCropOptionsBundle.putFloat(EXTRA_ASPECT_RATIO_X, 0);
-        mCropOptionsBundle.putFloat(EXTRA_ASPECT_RATIO_Y, 0);
-        return this;
     }
 
     /**
@@ -279,11 +253,7 @@ public class UCrop {
 
         public static final String EXTRA_UCROP_LOGO_COLOR = EXTRA_PREFIX + ".UcropLogoColor";
 
-        public static final String EXTRA_HIDE_BOTTOM_CONTROLS = EXTRA_PREFIX + ".HideBottomControls";
         public static final String EXTRA_FREE_STYLE_CROP = EXTRA_PREFIX + ".FreeStyleCrop";
-
-        public static final String EXTRA_ASPECT_RATIO_SELECTED_BY_DEFAULT = EXTRA_PREFIX + ".AspectRatioSelectedByDefault";
-        public static final String EXTRA_ASPECT_RATIO_OPTIONS = EXTRA_PREFIX + ".AspectRatioOptions";
 
         public static final String EXTRA_UCROP_ROOT_VIEW_BACKGROUND_COLOR = EXTRA_PREFIX + ".UcropRootViewBackgroundColor";
 
@@ -483,13 +453,6 @@ public class UCrop {
         }
 
         /**
-         * @param hide - set to true to hide the bottom controls (shown by default)
-         */
-        public void setHideBottomControls(boolean hide) {
-            mOptionBundle.putBoolean(EXTRA_HIDE_BOTTOM_CONTROLS, hide);
-        }
-
-        /**
          * @param enabled - set to true to let user resize crop bounds (disabled by default)
          */
         public void setFreeStyleCropEnabled(boolean enabled) {
@@ -497,47 +460,10 @@ public class UCrop {
         }
 
         /**
-         * Pass an ordered list of desired aspect ratios that should be available for a user.
-         *
-         * @param selectedByDefault - index of aspect ratio option that is selected by default (starts with 0).
-         * @param aspectRatio       - list of aspect ratio options that are available to user
-         */
-        public void setAspectRatioOptions(int selectedByDefault, AspectRatio... aspectRatio) {
-            if (selectedByDefault > aspectRatio.length) {
-                throw new IllegalArgumentException(String.format(Locale.US,
-                        "Index [selectedByDefault = %d] cannot be higher than aspect ratio options count [count = %d].",
-                        selectedByDefault, aspectRatio.length));
-            }
-            mOptionBundle.putInt(EXTRA_ASPECT_RATIO_SELECTED_BY_DEFAULT, selectedByDefault);
-            mOptionBundle.putParcelableArrayList(EXTRA_ASPECT_RATIO_OPTIONS, new ArrayList<Parcelable>(Arrays.asList(aspectRatio)));
-        }
-
-        /**
          * @param color - desired background color that should be applied to the root view
          */
         public void setRootViewBackgroundColor(@ColorInt int color) {
             mOptionBundle.putInt(EXTRA_UCROP_ROOT_VIEW_BACKGROUND_COLOR, color);
-        }
-
-        /**
-         * Set an aspect ratio for crop bounds.
-         * User won't see the menu with other ratios options.
-         *
-         * @param x aspect ratio X
-         * @param y aspect ratio Y
-         */
-        public void withAspectRatio(float x, float y) {
-            mOptionBundle.putFloat(EXTRA_ASPECT_RATIO_X, x);
-            mOptionBundle.putFloat(EXTRA_ASPECT_RATIO_Y, y);
-        }
-
-        /**
-         * Set an aspect ratio for crop bounds that is evaluated from source image width and height.
-         * User won't see the menu with other ratios options.
-         */
-        public void useSourceImageAspectRatio() {
-            mOptionBundle.putFloat(EXTRA_ASPECT_RATIO_X, 0);
-            mOptionBundle.putFloat(EXTRA_ASPECT_RATIO_Y, 0);
         }
 
         /**
