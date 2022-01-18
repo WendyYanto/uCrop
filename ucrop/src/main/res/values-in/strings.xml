@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="ucrop_edit_single_photo">Edit foto ini</string>
+    <string name="ucrop_save">Simpan</string>
+    <string name="ucrop_reset">Reset</string>
+</resources>

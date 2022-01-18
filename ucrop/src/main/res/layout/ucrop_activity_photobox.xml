@@ -1,57 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/ucrop_photobox"
+    android:id="@+id/rl_ucrop_photobox"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/ucrop_color_toolbar"
-        android:minHeight="?attr/actionBarSize">
+        android:id="@+id/t_toolbar"
+        style="@style/UcropGdnToolbar.White">
 
         <TextView
-            android:id="@+id/toolbar_title"
-            style="@style/TextAppearance.Widget.AppCompat.Toolbar.Title"
+            android:id="@+id/tv_save"
+            style="@style/UcropGdnTextView.Title2.Blue"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="start"
-            android:text="@string/ucrop_label_edit_photo"
-            android:textColor="@color/ucrop_color_toolbar_widget" />
+            android:layout_gravity="end"
+            android:layout_marginEnd="@dimen/ucrop_dp_8"
+            android:padding="@dimen/ucrop_dp_4"
+            android:text="@string/ucrop_save" />
 
+        <ImageView
+            android:id="@+id/iv_download"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_marginEnd="@dimen/ucrop_dp_8"
+            android:padding="@dimen/ucrop_dp_4"
+            app:srcCompat="@drawable/ucrop_ic_download" />
     </androidx.appcompat.widget.Toolbar>
 
     <FrameLayout
-        android:id="@+id/ucrop_frame"
+        android:id="@+id/fl_ucrop_frame"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/controls_wrapper"
-        android:layout_below="@+id/toolbar"
-        android:layout_marginBottom="-12dp">
+        android:layout_above="@+id/fl_controls_wrapper"
+        android:layout_below="@+id/t_toolbar"
+        android:layout_margin="@dimen/ucrop_dp_16">
 
         <ImageView
-            android:id="@+id/image_view_logo"
+            android:id="@+id/iv_edit_image"
             android:layout_width="@dimen/ucrop_default_crop_logo_size"
             android:layout_height="@dimen/ucrop_default_crop_logo_size"
             android:layout_gravity="center"
-            app:srcCompat="@drawable/ucrop_vector_ic_crop"
-            tools:background="@drawable/ucrop_vector_ic_crop"
+            tools:background="@drawable/ucrop_ic_download"
             tools:ignore="ContentDescription,MissingPrefix" />
 
         <com.yalantis.ucrop.view.UCropView
-            android:id="@+id/ucrop"
+            android:id="@+id/ucv_ucrop"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:alpha="0" />
     </FrameLayout>
 
     <FrameLayout
-        android:id="@+id/controls_wrapper"
+        android:id="@+id/fl_controls_wrapper"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/ucrop_dp_280"
         android:layout_alignParentBottom="true"
+        android:layout_marginHorizontal="@dimen/ucrop_dp_16"
+        android:layout_marginTop="@dimen/ucrop_dp_8"
         android:visibility="gone" />
-
 </RelativeLayout>

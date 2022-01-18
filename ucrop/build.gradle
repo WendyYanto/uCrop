@@ -13,6 +13,7 @@ android {
 
         vectorDrawables.useSupportLibrary = true
     }
+
     buildTypes {
         release {
             minifyEnabled false
@@ -39,5 +40,7 @@ dependencies {
     implementation "androidx.appcompat:appcompat:${androidx_appcompat_version}"
     implementation "androidx.exifinterface:exifinterface:${androidx_exifinterface_version}"
     implementation "androidx.transition:transition:${androidx_transition_version}"
+    implementation "com.google.android.material:material:${android_material_version}"
+
     implementation "com.squareup.okhttp3:okhttp:3.12.1"
 }

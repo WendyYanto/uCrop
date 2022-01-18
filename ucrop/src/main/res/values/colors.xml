@@ -11,18 +11,18 @@
     <!--uCrop Activity-->
     <color name="ucrop_color_toolbar">@color/ucrop_color_white</color>
     <color name="ucrop_color_statusbar">#f5f5f5</color>
-    <color name="ucrop_color_toolbar_widget">@color/ucrop_color_black</color>
-    <color name="ucrop_color_widget">@color/ucrop_color_black</color>
-    <color name="ucrop_color_widget_active">@color/ucrop_color_white</color>
-    <color name="ucrop_color_active_controls_color">@color/ucrop_color_blaze_orange</color>
-    <color name="ucrop_color_inactive_controls_color">@color/ucrop_color_heather</color>
-    <color name="ucrop_color_widget_rotate_mid_line">@color/ucrop_color_blaze_orange</color>
+    <color name="ucrop_color_toolbar_widget">@color/ucrop_black_low_61000000</color>
+    <color name="ucrop_color_widget">@color/ucrop_black_low_61000000</color>
+    <color name="ucrop_color_widget_active">@color/ucrop_black_medium_99000000</color>
+    <color name="ucrop_color_active_controls_color">@color/ucrop_blue_0095DA</color>
+    <color name="ucrop_color_inactive_controls_color">@color/ucrop_black_disabled_2E000000</color>
+    <color name="ucrop_color_widget_rotate_mid_line">@color/ucrop_blue_0095DA</color>
     <color name="ucrop_color_widget_rotate_angle">@color/ucrop_color_ebony_clay</color>
-    <color name="ucrop_color_active_aspect_ratio">@color/ucrop_color_blaze_orange</color>
+    <color name="ucrop_color_active_aspect_ratio">@color/ucrop_blue_0095DA</color>
     <color name="ucrop_color_inactive_aspect_ratio">@color/ucrop_color_ebony_clay</color>
     <color name="ucrop_color_widget_background">@color/ucrop_color_ebony_clay</color>
-    <color name="ucrop_color_widget_text">@color/ucrop_color_blaze_orange</color>
-    <color name="ucrop_color_progress_wheel_line">@color/ucrop_color_ebony_clay</color>
+    <color name="ucrop_color_widget_text">@color/ucrop_blue_0095DA</color>
+    <color name="ucrop_color_progress_wheel_line">@color/ucrop_grey_light_BDBDBD</color>
     <color name="ucrop_color_crop_background">@color/ucrop_color_black</color>
 
     <!--Crop View-->
@@ -30,5 +30,25 @@
     <color name="ucrop_color_default_crop_frame">#ffffff</color>
     <color name="ucrop_color_default_dimmed">#8c000000</color>
     <color name="ucrop_color_default_logo">#4f212121</color>
+
+    <!-- DLS Colors -->
+    <color name="ucrop_blue_0095DA">#0095DA</color>
+    <color name="ucrop_blue_medium_0095DA">#990095DA</color>
+
+    <color name="ucrop_red_F04242">#F04242</color>
+
+    <color name="ucrop_grey_5C5C5C">#5C5C5C</color>
+    <color name="ucrop_grey_light_BDBDBD">#BDBDBD</color>
+    <color name="ucrop_grey_light_1_E0E0E0">#E0E0E0</color>
+    <color name="ucrop_grey_light_2_F1F1F1">#F1F1F1</color>
+
+    <color name="ucrop_black_high_DE000000">#DE000000</color>
+    <color name="ucrop_black_medium_99000000">#99000000</color>
+    <color name="ucrop_black_low_61000000">#61000000</color>
+    <color name="ucrop_black_disabled_2E000000">#2E000000</color>
+
+    <color name="ucrop_white_FFFFFF">#FFFFFF</color>
+
+    <color name="ucrop_overlay_A3000000">#A3000000</color>
 
 </resources>
