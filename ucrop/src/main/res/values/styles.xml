@@ -1,57 +1,86 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
-    <style name="ucrop_ImageViewWidgetIcon">
+    <!-- Text View -->
+    <style name="UcropGdnTextView" parent="android:Widget.TextView">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_gravity">center</item>
-        <item name="android:scaleType">fitCenter</item>
-        <item name="android:duplicateParentState">true</item>
     </style>
 
-    <style name="ucrop_WrapperIconState">
-        <item name="android:layout_width">0dp</item>
-        <item name="android:layout_height">match_parent</item>
-        <item name="android:layout_weight">1</item>
-        <item name="android:background">?attr/selectableItemBackground</item>
-        <item name="android:clickable">true</item>
-        <item name="android:gravity">center</item>
-        <item name="android:orientation">vertical</item>
+    <style name="UcropGdnTextView.Title2">
+        <item name="android:fontFamily" tools:targetApi="jelly_bean">@font/source_sans_pro_medium</item>
+        <item name="android:textSize">@dimen/ucrop_sp_18</item>
+        <item name="lineHeight">@dimen/ucrop_sp_22</item>
     </style>
 
-    <style name="ucrop_WrapperRotateButton">
-        <item name="android:layout_width">@dimen/ucrop_size_wrapper_rotate_button</item>
-        <item name="android:layout_height">@dimen/ucrop_size_wrapper_rotate_button</item>
-        <item name="android:background">?attr/selectableItemBackgroundBorderless</item>
-        <item name="android:clickable">true</item>
+    <style name="UcropGdnTextView.Title2.BlackHigh" parent="UcropGdnTextView.Title2">
+        <item name="android:textColor">@color/ucrop_black_high_DE000000</item>
     </style>
 
-    <style name="ucrop_TextViewCropAspectRatio">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">@dimen/ucrop_height_crop_aspect_ratio_text</item>
-        <item name="android:layout_gravity">center</item>
-        <item name="android:duplicateParentState">true</item>
-        <item name="android:textColor">@color/ucrop_scale_text_view_selector</item>
+    <style name="UcropGdnTextView.Title2.Blue" parent="UcropGdnTextView.Title2">
+        <item name="android:textColor">@color/ucrop_blue_0095DA</item>
     </style>
 
-    <style name="ucrop_TextViewWidgetText">
-        <item name="android:layout_width">wrap_content</item>
+    <style name="UcropGdnTextView.Subtitle2">
+        <item name="android:fontFamily" tools:targetApi="jelly_bean">@font/source_sans_pro_medium</item>
+        <item name="android:textSize">@dimen/ucrop_sp_14</item>
+        <item name="lineHeight">@dimen/ucrop_sp_18</item>
+    </style>
+
+    <style name="UcropGdnTextView.Subtitle2.BlackHigh" parent="UcropGdnTextView.Subtitle2">
+        <item name="android:textColor">@color/ucrop_black_high_DE000000</item>
+    </style>
+
+    <style name="UcropGdnTextView.Subtitle2.BlackDisabled" parent="UcropGdnTextView.Subtitle2">
+        <item name="android:textColor">@color/ucrop_black_disabled_2E000000</item>
+    </style>
+
+    <style name="UcropGdnTextView.Subtitle2.Blue" parent="UcropGdnTextView.Subtitle2">
+        <item name="android:textColor">@color/ucrop_blue_0095DA</item>
+    </style>
+
+    <style name="UcropGdnTextView.Subtitle2.Red" parent="UcropGdnTextView.Subtitle2">
+        <item name="android:textColor">@color/ucrop_red_F04242</item>
+    </style>
+
+    <style name="UcropGdnTextView.BodyText2">
+        <item name="android:fontFamily" tools:targetApi="jelly_bean">@font/source_sans_pro_regular</item>
+        <item name="android:textSize">@dimen/ucrop_sp_14</item>
+        <item name="lineHeight">@dimen/ucrop_sp_18</item>
+    </style>
+
+    <style name="UcropGdnTextView.BodyText2.BlackMedium">
+        <item name="android:textColor">@color/ucrop_black_medium_99000000</item>
+    </style>
+
+    <style name="UcropGdnTextView.Label">
+        <item name="android:fontFamily" tools:targetApi="jelly_bean">@font/source_sans_pro_medium</item>
+        <item name="android:textSize">@dimen/ucrop_dp_12</item>
+        <item name="lineHeight">@dimen/ucrop_sp_16</item>
+    </style>
+
+    <style name="UcropGdnTextView.Label.BlackLow">
+        <item name="android:textColor">@color/ucrop_black_low_61000000</item>
+    </style>
+
+    <!-- Toolbar -->
+    <style name="UcropGdnToolbar.White" parent="UcropGdnToolbar">
+        <item name="android:background">@color/ucrop_white_FFFFFF</item>
+        <item name="android:textColor">@color/ucrop_black_high_DE000000</item>
+        <item name="android:elevation" tools:targetApi="lollipop">@dimen/ucrop_dp_4</item>
+        <item name="titleTextAppearance">@style/UcropGdnTextView.Title2.BlackHigh</item>
+        <item name="subtitleTextAppearance">@style/UcropGdnTextView.Subtitle2.BlackHigh</item>
+    </style>
+
+    <style name="UcropToolbarTheme" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
+        <item name="colorControlNormal">@color/ucrop_white_FFFFFF</item>
+        <item name="android:textColorSecondary">@color/ucrop_white_FFFFFF</item>
+        <item name="android:textColor">@color/ucrop_white_FFFFFF</item>
+    </style>
+
+    <style name="UcropGdnToolbar" parent="Widget.AppCompat.Toolbar">
+        <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_centerHorizontal">true</item>
-        <item name="android:textStyle">bold</item>
-        <item name="android:textColor">@color/ucrop_color_widget_text</item>
-        <item name="android:layout_marginTop">@dimen/ucrop_margin_top_widget_text</item>
-        <item name="android:textSize">@dimen/ucrop_text_size_widget_text</item>
+        <item name="android:theme">@style/UcropToolbarTheme</item>
     </style>
-
-    <style name="ucrop_TextViewWidget">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_centerHorizontal">true</item>
-        <item name="android:layout_marginTop">@dimen/ucrop_margin_top_controls_text</item>
-        <item name="android:textColor">@color/ucrop_color_widget_active</item>
-        <item name="android:textStyle">bold</item>
-        <item name="android:textSize">@dimen/ucrop_text_size_controls_text</item>
-    </style>
-
 </resources>

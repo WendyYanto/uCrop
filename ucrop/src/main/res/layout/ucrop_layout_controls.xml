@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/tv_reset"
+        style="@style/UcropGdnTextView.Subtitle2.BlackDisabled"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="@dimen/ucrop_dp_8"
+        android:paddingVertical="@dimen/ucrop_dp_4"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:text="Reset" />
+
+    <include
+        android:id="@+id/i_layout_rotate_wheel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/ucrop_dp_8"
+        layout="@layout/ucrop_layout_rotate_wheel"
+        app:layout_constraintTop_toBottomOf="@id/tv_reset"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_crop_scale"
+        style="@style/UcropGdnTextView.BodyText2.BlackMedium"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/ucrop_dp_20"
+        android:background="@drawable/ucrop_shape_border_grey_5c5c5c"
+        android:gravity="center"
+        android:padding="@dimen/ucrop_dp_8"
+        android:text="@string/ucrop_1_to_1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/i_layout_rotate_wheel" />
+
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/g_crop_rotate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:constraint_referenced_ids="i_layout_rotate_wheel, tv_crop_scale" />
+</androidx.constraintlayout.widget.ConstraintLayout>

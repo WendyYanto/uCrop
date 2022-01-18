@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rl_ucrop"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/ucrop_white_FFFFFF">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/t_toolbar"
+        style="@style/UcropGdnToolbar.White">
+
+        <TextView
+            android:id="@+id/tv_save"
+            style="@style/UcropGdnTextView.Title2.Blue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_marginEnd="@dimen/ucrop_dp_8"
+            android:padding="@dimen/ucrop_dp_4"
+            android:text="@string/ucrop_save" />
+
+        <ImageView
+            android:id="@+id/iv_download"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_marginEnd="@dimen/ucrop_dp_8"
+            android:padding="@dimen/ucrop_dp_4"
+            app:srcCompat="@drawable/ucrop_ic_download" />
+    </androidx.appcompat.widget.Toolbar>
+
+    <FrameLayout
+        android:id="@+id/fl_ucrop_frame"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/fl_controls_wrapper"
+        android:layout_below="@+id/t_toolbar"
+        android:layout_marginHorizontal="@dimen/ucrop_dp_16"
+        android:layout_marginTop="@dimen/ucrop_dp_16"
+        android:layout_marginBottom="@dimen/ucrop_dp_8">
+
+        <ImageView
+            android:id="@+id/iv_edit_image"
+            android:layout_width="@dimen/ucrop_default_crop_logo_size"
+            android:layout_height="@dimen/ucrop_default_crop_logo_size"
+            android:layout_gravity="center"
+            tools:background="@drawable/ucrop_ic_download"
+            tools:ignore="ContentDescription,MissingPrefix" />
+
+        <com.yalantis.ucrop.view.UCropView
+            android:id="@+id/ucv_ucrop"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:alpha="0" />
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/fl_controls_wrapper"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/ucrop_dp_200"
+        android:layout_alignParentBottom="true"
+        android:layout_marginHorizontal="@dimen/ucrop_dp_16"
+        android:visibility="gone" />
+</RelativeLayout>
