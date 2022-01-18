@@ -16,7 +16,7 @@
     <dimen name="ucrop_default_crop_rect_corner_touch_area_line_length">10dp</dimen>
 
     <!-- DLS Dimensions -->
-    <dimen name="ucrop_dp_280">280dp</dimen>
+    <dimen name="ucrop_dp_200">200dp</dimen>
     <dimen name="ucrop_dp_64">64dp</dimen>
     <dimen name="ucrop_dp_50">50dp</dimen>
     <dimen name="ucrop_dp_48">48dp</dimen>

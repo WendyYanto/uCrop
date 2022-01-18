@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/rl_ucrop"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/ucrop_white_FFFFFF">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/t_toolbar"
@@ -36,7 +37,9 @@
         android:layout_height="wrap_content"
         android:layout_above="@+id/fl_controls_wrapper"
         android:layout_below="@+id/t_toolbar"
-        android:layout_margin="@dimen/ucrop_dp_16">
+        android:layout_marginHorizontal="@dimen/ucrop_dp_16"
+        android:layout_marginTop="@dimen/ucrop_dp_16"
+        android:layout_marginBottom="@dimen/ucrop_dp_8">
 
         <ImageView
             android:id="@+id/iv_edit_image"
@@ -56,9 +59,8 @@
     <FrameLayout
         android:id="@+id/fl_controls_wrapper"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/ucrop_dp_280"
+        android:layout_height="@dimen/ucrop_dp_200"
         android:layout_alignParentBottom="true"
         android:layout_marginHorizontal="@dimen/ucrop_dp_16"
-        android:layout_marginTop="@dimen/ucrop_dp_8"
         android:visibility="gone" />
 </RelativeLayout>

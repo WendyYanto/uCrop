@@ -40,7 +40,7 @@
             android:id="@+id/hpwv_rotate_scroll_wheel"
             android:layout_width="match_parent"
             android:layout_height="@dimen/ucrop_dp_24"
-            android:layout_marginTop="@dimen/ucrop_dp_12"
+            android:layout_marginTop="@dimen/ucrop_dp_4"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
