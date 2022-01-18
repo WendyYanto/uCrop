@@ -84,7 +84,7 @@ public class UCropActivity extends AppCompatActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.ucrop_activity_photobox);
+        setContentView(R.layout.ucrop_activity);
 
         final Intent intent = getIntent();
 
@@ -188,10 +188,10 @@ public class UCropActivity extends AppCompatActivity {
 
         if (mShowBottomControls) {
 
-            ViewGroup viewGroup = findViewById(R.id.rl_ucrop_photobox);
+            ViewGroup viewGroup = findViewById(R.id.rl_ucrop);
             ViewGroup wrapper = viewGroup.findViewById(R.id.fl_controls_wrapper);
             wrapper.setVisibility(View.VISIBLE);
-            LayoutInflater.from(this).inflate(R.layout.ucrop_controls, wrapper, true);
+            LayoutInflater.from(this).inflate(R.layout.ucrop_layout_controls, wrapper, true);
 
             mControlsTransition = new AutoTransition();
             mControlsTransition.setDuration(CONTROLS_ANIMATION_DURATION);
@@ -385,7 +385,7 @@ public class UCropActivity extends AppCompatActivity {
             mBlockingView.setClickable(true);
         }
 
-        ((RelativeLayout) findViewById(R.id.rl_ucrop_photobox)).addView(mBlockingView);
+        ((RelativeLayout) findViewById(R.id.rl_ucrop)).addView(mBlockingView);
     }
 
     protected void cropAndSaveImage() {
